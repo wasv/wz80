@@ -1,4 +1,4 @@
-update=Sun 19 Mar 2017 08:05:13 PM EDT
+update=Mon 20 Mar 2017 11:30:52 AM EDT
 version=1
 last_client=kicad
 [pcbnew]
@@ -23,8 +23,6 @@ ModuleOutlineThickness=0.150000000000
 [cvpcb]
 version=1
 NetIExt=net
-[general]
-version=1
 [eeschema]
 version=1
 LibDir=lib
@@ -61,3 +59,15 @@ LibName29=valves
 LibName30=lib/Zilog
 LibName31=lib/switches
 LibName32=lib/crystal
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60
+[general]
+version=1
