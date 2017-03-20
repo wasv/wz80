@@ -1,7 +1,7 @@
 (export (version D)
   (design
-    (source /home/wasv/Projects/z80/wz80.sch)
-    (date "Sun 19 Mar 2017 10:40:31 PM EDT")
+    (source /home/wasv/Projects/wz80/wz80-main/wz80.sch)
+    (date "Mon 20 Mar 2017 01:27:18 PM EDT")
     (tool "Eeschema 4.0.6-e0-6349~53~ubuntu16.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -234,10 +234,10 @@
         (pin (num 39) (name A9) (type output))
         (pin (num 40) (name A10) (type output)))))
   (libraries
-    (library (logical Zilog)
-      (uri /home/wasv/Projects/z80/lib/Zilog.lib))
     (library (logical switches)
-      (uri /home/wasv/Projects/z80/lib/switches.lib))
+      (uri /usr/share/kicad/library/switches.lib))
+    (library (logical Zilog)
+      (uri /usr/share/kicad/library/Zilog.lib))
     (library (logical conn)
       (uri /usr/share/kicad/library/conn.lib))
     (library (logical device)
