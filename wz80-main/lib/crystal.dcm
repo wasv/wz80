@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP Oscillator_4Pin
+D Four pin crystal (GND on pins 2 and 4), e.g. in SMD package
+K quartz ceramic resonator oscillator
+$ENDCMP
+#
+#End Doc Library
