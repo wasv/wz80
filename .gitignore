@@ -1,4 +1,5 @@
 *bak
 *.o
 *.bin
+*.elf
 core.z80
