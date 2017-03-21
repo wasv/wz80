@@ -228,28 +228,6 @@ F 3 "" H 4750 4700 50  0001 C CNN
 	1    4750 4700
 	1    0    0    -1  
 $EndComp
-$Comp
-L VCC #PWR04
-U 1 1 58D01F5D
-P 6800 4450
-F 0 "#PWR04" H 6800 4300 50  0001 C CNN
-F 1 "VCC" H 6800 4600 50  0000 C CNN
-F 2 "" H 6800 4450 50  0001 C CNN
-F 3 "" H 6800 4450 50  0001 C CNN
-	1    6800 4450
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR05
-U 1 1 58D01F7F
-P 6800 4850
-F 0 "#PWR05" H 6800 4600 50  0001 C CNN
-F 1 "GND" H 6800 4700 50  0000 C CNN
-F 2 "" H 6800 4850 50  0001 C CNN
-F 3 "" H 6800 4850 50  0001 C CNN
-	1    6800 4850
-	1    0    0    -1  
-$EndComp
 Text Label 4700 2750 0    60   ~ 0
 A0
 Text Label 4700 2850 0    60   ~ 0
@@ -340,10 +318,6 @@ Wire Wire Line
 	7050 4400 7300 4400
 Wire Wire Line
 	7050 4500 7300 4500
-Wire Wire Line
-	6800 4600 7300 4600
-Wire Wire Line
-	6800 4700 7300 4700
 Wire Wire Line
 	6850 5100 7300 5100
 Wire Wire Line
@@ -449,10 +423,6 @@ Wire Wire Line
 Wire Wire Line
 	4750 4750 4900 4750
 Wire Wire Line
-	6800 4600 6800 4450
-Wire Wire Line
-	6800 4700 6800 4850
-Wire Wire Line
 	6600 2150 7250 2150
 Wire Wire Line
 	7250 2150 7250 2200
@@ -516,9 +486,9 @@ Text Label 7050 5100 0    60   ~ 0
 RD
 Text Label 7050 5200 0    60   ~ 0
 MREQ
-Text Label 7050 4600 0    60   ~ 0
-VCC
 Text Label 7050 4700 0    60   ~ 0
+VCC
+Text Label 7050 4600 0    60   ~ 0
 GND
 Text Label 4700 4250 0    60   ~ 0
 A15
@@ -537,4 +507,36 @@ F 3 "" H 3650 4350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4250 4750 3900 4750
+Wire Wire Line
+	6950 4600 7300 4600
+Wire Wire Line
+	6850 4700 7300 4700
+$Comp
+L VCC #PWR?
+U 1 1 58D04BFB
+P 6850 4700
+F 0 "#PWR?" H 6850 4550 50  0001 C CNN
+F 1 "VCC" H 6850 4850 50  0000 C CNN
+F 2 "" H 6850 4700 50  0001 C CNN
+F 3 "" H 6850 4700 50  0001 C CNN
+	1    6850 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 58D04C1B
+P 6750 4600
+F 0 "#PWR?" H 6750 4350 50  0001 C CNN
+F 1 "GND" H 6750 4450 50  0000 C CNN
+F 2 "" H 6750 4600 50  0001 C CNN
+F 3 "" H 6750 4600 50  0001 C CNN
+	1    6750 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 4600 6950 4500
+Wire Wire Line
+	6950 4500 6750 4500
+Wire Wire Line
+	6750 4500 6750 4600
 $EndSCHEMATC
