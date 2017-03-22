@@ -2,4 +2,6 @@
 *.o
 *.bin
 *.elf
+*.hex
+*.map
 core.z80
