@@ -7,23 +7,23 @@ entity counter is
     generic( n : positive  := 3);
     port(
             clk     : in  std_logic;
-            reset   : in  std_logic;
+            enable  : in  std_logic;
+            ovf     : out std_logic;
             count   : out std_logic_vector(n downto 0)
         );
 end counter;
 
 architecture behv of counter is
     signal sCount : std_logic_vector(n downto 0) := (others => '1');
-    signal sEnable : std_logic := '0';
 begin
-    process(clk, reset)
+    process(clk, enable)
     begin
-        if rising_edge(clk) and sEnable = '1' then
+        if rising_edge(clk) and enable = '1' then
             sCount <= sCount + 1;
         end if;
     end process;
 
-    sEnable <= reset or (not and_reduce(sCount));
 
+    ovf <= and_reduce(sCount);
     count <= sCount(n downto 0);
 end behv;
