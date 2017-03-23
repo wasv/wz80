@@ -17,7 +17,7 @@ architecture struct of top is
     signal sDone  : std_logic;
 begin
     uart0 : entity work.uart
-        port map(sin => sin, clk=>clk,ready=>sReady,data=>sData);
+        port map(sin => sin, clk=>clk,ready=>sReady,data=>sData, ack=>(not sDone));
     sig_out0 : entity work.sig_out
         port map(clk => clk, ready => sReady, data_in=>sData,
                 we => we, done => sDone, data_out => data_out
