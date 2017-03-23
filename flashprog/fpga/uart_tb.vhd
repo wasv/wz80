@@ -53,7 +53,7 @@ ARCHITECTURE behavior OF uart_tb IS
 
    --Inputs
     signal clk : std_logic := '0';
-    signal sin : std_logic := '0';
+    signal sin : std_logic := '1';
 
    --Outputs
     signal ready : std_logic;
@@ -61,7 +61,7 @@ ARCHITECTURE behavior OF uart_tb IS
 
    -- Clock period definitions
     constant clk_period : time := 12.5 ns;
-    constant sim_data : std_logic_vector := "11"&"0100100111"&"11"&"0101010101";
+    constant sim_data : std_logic_vector := "11"&"0100100111"&"11"&"0101010101"&"0111100001";
 
 BEGIN
 

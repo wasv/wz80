@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
 entity uart is
      port(
@@ -10,21 +11,35 @@ entity uart is
     );
 end uart;
 
-architecture struct of uart is
-    signal sSamples : std_logic_vector(39 downto 0) := (others => '1');
+architecture behv of uart is
     signal sData : std_logic_vector(7 downto 0) := (others => '0');
-    signal sReady : std_logic := '0';
+    signal sBitClk : std_logic_vector(1 downto 0) := "00";
+    signal sBitCnt : std_logic_vector(3 downto 0) := "0000";
+    signal sRxEn : std_logic := '0';
 begin
-    sr: entity work.shift_reg
-            generic map(n => 39)
-            port map(sin => sin, clk => clk,
-                    reset => sReady, data => sSamples);
-    fd: entity work.frame_detect
-            port map(samples => sSamples, data => sData,
-                    ready => sReady);
-    dr: entity work.reg
-            generic map(n => 7)
-            port map(data_in => sData, data_out => data,
-                    clk => sReady);
-    ready <= sReady;
-end struct;
+    process(clk)
+    begin
+        if(rising_edge(clk)) then
+            if(sin = '0' and sRxEn = '0') then
+                sBitClk <= "00";
+                sBitCnt <= "0000";
+                sRxEn <= '1';
+            end if;
+            if(sRxEn = '1') then
+                sBitClk <= sBitClk + 1;
+            end if;
+            if((sBitClk(0) and sBitClk(1)) = '1' and sRxEn = '1') then
+                sBitClk <= "00";
+                if(sBitCnt < 8) then
+                    sData <= sin & sData(7 downto 1);
+                end if;
+                sBitCnt <= sBitCnt + 1;
+            end if;
+            if(sBitCnt = 9 and sRxEn = '1') then
+                data <= sData;
+                sRxEn <= '0';
+            end if;
+        end if;
+    end process;
+    ready <= not sRxEn;
+end behv;
