@@ -60,8 +60,8 @@ ARCHITECTURE behavior OF top_tb IS
     signal data_out : std_logic_vector(23 downto 0);
 
     -- Clock period definitions
-    constant clk_period : time := 12.5 ns;
-    constant sim_data : std_logic_vector := "0100100111"&"0101010101"&"0111100001";
+    constant clk_period : time := 31.25 ns;
+    constant sim_data : std_logic_vector := "0101001111"&"0101010101"&"0111100001";
 
 BEGIN
 
@@ -88,26 +88,26 @@ BEGIN
     stim_proc: process
     begin
         -- hold reset state for 100 ns.
-        wait for 100 ns;
+        wait for 4.34 us;
 
         -- insert stimulus here
         for i in 0 to 9 loop
             sin <= sim_data(i);
-            wait for clk_period*4;
+            wait for 8.68 us;
         end loop;
-
         wait until rising_edge(cts);
+
         for i in 10 to 19 loop
             sin <= sim_data(i);
-            wait for clk_period*4;
+            wait for 8.68 us;
         end loop;
-
         wait until rising_edge(cts);
+
         for i in 20 to 29 loop
             sin <= sim_data(i);
-            wait for clk_period*4;
+            wait for 8.68 us;
         end loop;
-        wait;
+        wait until rising_edge(cts);
     end process;
 
 END;
