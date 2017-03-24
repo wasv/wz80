@@ -1,5 +1,16 @@
+/* vim: ft=z80
+*/
 .text
-fun:
-1: LD a,0
-    ADD a,1
+
+/*
+ * Shifts left accum by b bits.
+ */
+.global rotate_mult
+rotate_mult:
+    PUSH bc
+1:  RRCA
+    DEC b
+    JP Z, 2f
     JP 1b
+2:  POP bc
+    RET
