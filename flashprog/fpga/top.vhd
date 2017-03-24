@@ -28,5 +28,5 @@ begin
         port map(clk => sClk, ready => sReady, data_in=>sData,
                 we => we, done => sDone, data_out => data_out);
 
-    cts <= sDone;
+    cts <= not sDone;
 end struct;
