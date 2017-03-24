@@ -4,13 +4,13 @@
 --
 -- Create Date:   23:01:52 03/21/2017
 -- Design Name:
--- Module Name:   /home/wasv/Projects/wz80/flashprog/fpga/sig_out_tb.vhd
+-- Module Name:   /home/wasv/Projects/wz80/flashprog/fpga/erase_tb.vhd
 -- Project Name:  flashprog
 -- Target Device:
 -- Tool versions:
 -- Description:
 --
--- VHDL Test Bench Created by ISE for module: sig_out
+-- VHDL Test Bench Created by ISE for module: erase
 --
 -- Dependencies:
 --
@@ -32,10 +32,10 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
 
-ENTITY sig_out_tb IS
-END sig_out_tb;
+ENTITY erase_tb IS
+END erase_tb;
 
-ARCHITECTURE behavior OF sig_out_tb IS
+ARCHITECTURE behavior OF erase_tb IS
    --Inputs
    signal clk : std_logic := '0';
    signal ready : std_logic := '0';
@@ -51,9 +51,8 @@ ARCHITECTURE behavior OF sig_out_tb IS
 BEGIN
 
 	-- Instantiate the Unit Under Test (UUT)
-   uut: entity work.sig_out PORT MAP (
+   uut: entity work.erase PORT MAP (
           clk => clk,
-          data_in => X"C0",
           ready => ready,
           we => we,
           done => done,
@@ -75,13 +74,7 @@ BEGIN
    begin
 		wait for 100 ns;
 		ready <= '1';
-		wait for clk_period*2;
-		ready <= '0';
-        wait for clk_period*6;
-        ready <= '1';
-        wait for clk_period*2;
-        ready <= '0';
-        wait for clk_period*23;
+        wait;
       -- insert stimulus here
    end process;
 

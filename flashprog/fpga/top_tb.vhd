@@ -37,19 +37,6 @@ ENTITY top_tb IS
 
 ARCHITECTURE behavior OF top_tb IS
 
-    -- Component Declaration for the Unit Under Test (UUT)
-
-    COMPONENT top
-        PORT(
-                clk : IN  std_logic;
-                sin : IN  std_logic;
-                we : OUT  std_logic;
-                cts : OUT  std_logic;
-                data_out : OUT  std_logic_vector(23 downto 0)
-            );
-    END COMPONENT;
-
-
     --Inputs
     signal clk : std_logic := '0';
     signal sin : std_logic := '1';
@@ -66,7 +53,7 @@ ARCHITECTURE behavior OF top_tb IS
 BEGIN
 
     -- Instantiate the Unit Under Test (UUT)
-    uut: top PORT MAP (
+    uut: entity work.top PORT MAP (
                           clk => clk,
                           sin => sin,
                           we => we,
@@ -83,7 +70,6 @@ BEGIN
         wait for clk_period/2;
     end process;
 
-
     -- Stimulus process
     stim_proc: process
     begin
@@ -95,19 +81,19 @@ BEGIN
             sin <= sim_data(i);
             wait for 8.68 us;
         end loop;
-        wait until rising_edge(cts);
+        wait until falling_edge(cts);
 
         for i in 10 to 19 loop
             sin <= sim_data(i);
             wait for 8.68 us;
         end loop;
-        wait until rising_edge(cts);
+        wait until falling_edge(cts);
 
         for i in 20 to 29 loop
             sin <= sim_data(i);
             wait for 8.68 us;
         end loop;
-        wait until rising_edge(cts);
+        wait until falling_edge(cts);
     end process;
 
 END;

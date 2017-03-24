@@ -15,21 +15,18 @@ end sig_out;
 
 architecture df of sig_out is
     signal sDone  : std_logic;
-    signal sEnable: std_logic;
     signal sCount : std_logic_vector(3 downto 0) := (others => '0');
     signal sData  : std_logic_vector(23 downto 0) := (others => '0');
 begin
     mux_counter : entity work.counter
         port map(   clk => clk,
                     count => sCount,
-                    enable => sEnable,
+                    enable => ready,
                     ovf => sDone);
 
-    sEnable <= ready or not sDone;
-
     addr_counter : entity work.counter
-        generic map(n => 15)
-        port map(   clk => ready,
+        generic map(n => 65535)
+        port map(   clk => sDone,
                     count => sData(23 downto 8),
                     enable => sDone);
 

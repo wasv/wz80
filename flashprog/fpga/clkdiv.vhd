@@ -13,11 +13,10 @@ entity clkdiv is
 end clkdiv;
 
 architecture behv of clkdiv is
-    constant bits : integer := f_log2(factor);
     signal sClock : std_logic := '0';
 begin
     process(clk_in)
-        variable vCount : std_logic_vector(bits downto 0) := (others => '0');
+        variable vCount : std_logic_vector(f_log2(factor)-1 downto 0) := (others => '0');
     begin
         if rising_edge(clk_in) then
             vCount := vCount + 1;
