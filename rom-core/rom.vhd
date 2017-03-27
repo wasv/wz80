@@ -6,8 +6,9 @@ use std.textio.all;
 
 entity rom is
     generic (
-        ADDR_WIDTH       : integer := 8;
-        DATA_WIDTH       : integer := 8
+        ADDR_WIDTH       : integer := 14;
+        DATA_WIDTH       : integer := 8;
+        DATA_FILE        : string  := "core.dump"
     );
     port (
         addr_i    : in  std_logic_vector(ADDR_WIDTH-1 downto 0);
@@ -27,23 +28,21 @@ impure function init_mem(mif_file_name : in string) return mem_type is
     variable temp_mem : mem_type;
     variable addr_cnt : integer := 0;
 begin
-    for addr_cnt in mem_type'range loop
-        if not endfile(mif_file) then
-            readline(mif_file, mif_line);
-            if not endfile(mif_file) then
-                hread(mif_line, temp_bv);
-                temp_mem(addr_cnt) := std_logic_vector(temp_bv);
-            else
-                temp_mem(addr_cnt) := (others=>'0');
-            end if;
-        else
-            temp_mem(addr_cnt) := (others=>'0');
-        end if;
+    for cnt in mem_type'range loop
+        exit when endfile(mif_file);
+        readline(mif_file, mif_line);
+        hread(mif_line, temp_bv);
+        temp_mem(addr_cnt) := std_logic_vector(temp_bv);
+        addr_cnt := addr_cnt + 1;
+    end loop;
+    for cnt in addr_cnt to mem_type'length-1 loop
+        temp_mem(addr_cnt) := (others=>'0');
+        addr_cnt := addr_cnt + 1;
     end loop;
     return temp_mem;
 end function;
 
-constant mem : mem_type := init_mem("./core.dump");
+constant mem : mem_type := init_mem(DATA_FILE);
 
 begin
     data_o <= mem(to_integer(unsigned(addr_i)));
