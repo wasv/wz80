@@ -3,7 +3,7 @@
 .text
 
 /*
- * Shifts left accum by b bits.
+ * Shifts accum right by b bits.
  */
 .global rotate_mult
 rotate_mult:
