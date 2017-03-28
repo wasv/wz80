@@ -1,8 +1,8 @@
 TARGET=test
-SOURCES=main.s fun.s
+SOURCES=main.s
 LDSCRIPT=main.ld
 
-.PHONY: all hex dump bin core
+.PHONY: all core hex bin dump
 all: core hex bin dump
 
 core: core.z80
